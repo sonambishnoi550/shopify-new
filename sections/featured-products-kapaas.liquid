@@ -1,0 +1,89 @@
+<!-- sections/fabric-types.liquid -->
+<section class="xl:py-[130px] lg:py-[100px] py-[90px] px-6">
+  <div class="max-w-[1140px] mx-auto text-center">
+    <!-- Heading -->
+    {% if section.settings.heading != blank %}
+      <h2 class="lg:!text-custom-4xl md:!text-custom-3xl !text-custom-2xl font-semibold !font-secondary !leading-[120%] md:mb-4 mb-3">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    <!-- Subheading -->
+    {% if section.settings.subheading != blank %}
+      <p class="md:text-base text-sm !font-primary font-normal leading-[150%] mb-10">
+        {{ section.settings.subheading }}
+      </p>
+    {% endif %}
+
+    <!-- Products -->
+    <div class="flex flex-wrap justify-center xl:!gap-[24px] lg:!gap-[22px] md:!gap-10 sm:!gap-11 !gap-[11px]">
+      {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product] %}
+        {% if product %}
+          {% assign first_collection = product.collections | first %}
+          <div class="flex flex-col items-center group md:!gap-5 !gap-2 w-[calc(50%-12px)] lg:w-[calc(25%-18px)] max-w-[267px]">
+            <!-- Clickable Product -->
+            {% if first_collection %}
+              <a href="/collections/{{ first_collection.handle }}/products/{{ product.handle }}" class="flex flex-col items-center group md:!gap-5 !gap-2 w-full">
+            {% else %}
+              <a href="{{ product.url }}" class="flex flex-col items-center group md:!gap-5 !gap-2 w-full">
+            {% endif %}
+              <!-- Round Image -->
+              <div class="w-full aspect-square rounded-full overflow-hidden flex items-center justify-center bg-white">
+                {% if product.featured_image %}
+                  <img
+                    src="{{ product.featured_image | img_url: '267x267' }}"
+                    alt="{{ product.title | escape }}"
+                    class="w-full h-full object-cover"
+                    width="267"
+                    height="267"
+                  >
+                {% endif %}
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fabric Types",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Fabric Types We Offer"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover the perfect fabric for your next creation — from breezy rayons to crisp poplins and rich cambrics."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "fabric",
+      "name": "Fabric",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Fabric Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Fabric Types",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

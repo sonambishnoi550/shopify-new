@@ -1,0 +1,163 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<style>
+            @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+            .highlight-green {
+              background: linear-gradient(to top, #BEDE41 50%, transparent 50%);
+              display: inline;
+              color: #000000;
+              border-radius: 2px;
+              padding: 0 0.5px;
+            }
+             .what-make-arrow-buttonn {
+    display: flex;
+    height: 44px;
+    width: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid #9787FE;
+    background-color: transparent;
+    padding: 8px;
+   transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .what-make-arrow-button:hover {
+    background-color: #9787FE;
+    transform: scale(1.05);
+  }
+  .arrow-path {
+    stroke: #9787FE;
+    transition: stroke 0.3s ease;
+  }
+  .what-make-arrow-button:hover .arrow-path {
+    stroke: #ffffff;
+  }
+  /* Hide default Swiper arrow shapes */
+  .what-make-swiper-button-next::after,
+  .what-make-swiper-button-prev::after {
+    content: none !important;
+  }
+</style>
+<section class="!bg-[#ECF7B9] lg:!py-[100px] md:!18 !py-14">
+  <div class="!max-w-[1140px] !mx-auto">
+    <!-- Heading and Button -->
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between md:gap-6 gap-5 md:pb-10 pb-5 px-5">
+      <div>
+        <h2 class="md:!text-4xl !text-[28px] font-semibold !text-[#1C2231] md:pb-4 pb-2 mb-0 !leading-[120%]">
+          {{ section.settings.heading }}
+        </h2>
+        <p class="!text-[#010101] !text-base mb-0 !leading-[150%]">
+          {{ section.settings.description | newline_to_br }}
+        </p>
+      </div>
+      {% if section.settings.button_text != blank %}
+        <button class="!bg-[#9787FE] !whitespace-nowrap font-semibold py-4 px-6 !text-[#FCFCFC] rounded !leading-[100%]">
+          {{ section.settings.button_text }}
+        </button>
+      {% endif %}
+    </div>
+    <!-- SLIDER -->
+    <div class="what-make-swiper what-make-slider block lg:hidden !relative !px-5">
+      <div class="swiper-wrapper">
+        {% for block in (1..5) %}
+            {% for item in section.blocks %}
+          <div class="swiper-slide">
+            <div class="flex flex-col gap-6">
+              <div class="w-full">
+                {% if section.settings.image != blank %}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 800 }}"
+                    alt="{{ block.settings.title }}"
+                    class="!max-w-[335px] sm:!max-w-[400px] md:!max-w-[500px] rounded-2xl"
+                    width="500"
+                    height="460"
+                  >
+                {% endif %}
+              </div>
+              <div class="flex flex-col gap-6">
+                <div class="group rounded-lg py-5 px-4 !bg-[#FCFCFC0A] !shadow-[0_4px_12.1px_0px_#01010133]">
+                  <h3 class="text-lg sm:text-xl md:text-[32px] font-semibold text-[#1C2231] pb-3 sm:pb-4 mb-0">
+                     {{ block.settings.title }}
+                  </h3>
+                  <p class="text-sm sm:text-base leading-[150%] text-[#010101] mb-4 font-normal">
+                    Too many ideas, too little structure.
+                    <span class="highlight-green font-normal">
+                       {{ block.settings.description }}
+                    </span>
+                  </p>
+                </div>
+                <div class="group rounded-lg py-5 px-4 !bg-[#FCFCFC0A] !shadow-[0_4px_12.1px_0px_#01010133] !mb-20">
+                  <h3 class="text-lg sm:text-xl md:text-[32px] font-semibold text-[#1C2231] pb-3 sm:pb-4 mb-0">
+                   {{ block.settings.title_2 }}
+                  </h3>
+                  <p class="text-sm sm:text-base leading-[150%] text-[#010101] mb-4 font-normal">
+                     {{ block.settings.description_2 }}
+                  </p>
+                  <a
+                     href="{{ block.settings.link }}"
+                    class="opacity-100 translate-y-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 !text-[#9787FE] font-semibold text-sm sm:text-base inline-flex items-center gap-3"
+                  >
+                    Book Now
+                    <span class="transition-all duration-300 ease-in-out group-hover:translate-x-1">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M16.9395 18.3105L23.25 12L16.9395 5.68945L15.8788 6.75014L20.3787 11.25H0.785812V12.75H20.3786L15.8788 17.2498L16.9395 18.3105Z" fill="#9787FE"/>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+        {% endfor %}
+      </div>
+      <!-- Arrows placed below Swiper with centered positioning -->
+      <div class="absolute left-1/2 top-[95%] !mt-3 flex -translate-x-1/2 gap-4 z-10">
+        <!-- Prev -->
+        <div class="what-make-swiper-button-prev what-make-arrow-button">
+          <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.834 10.5L4.16732 10.5M15.834 10.5L10.834 15.5M15.834 10.5L10.834 5.5"
+              class="arrow-path"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <!-- Next -->
+        <div class="what-make-swiper-button-next what-make-arrow-button">
+          <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.16602 10.5L15.8327 10.5M4.16602 10.5L9.16602 15.5M4.16602 10.5L9.16602 5.5"
+              class="arrow-path"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+ var whatMakeSwiper = new Swiper('.what-make-slider', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    grabCursor: true,
+    navigation: {
+        nextEl: '.what-make-swiper-button-next',
+        prevEl: '.what-make-swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+    },
+});
+
+</script>
+{% schema %}
+{
+  "name": "Custom Section",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Custom Section"
+    }
+  ]
+}
+{% endschema %}

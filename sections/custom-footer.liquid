@@ -1,0 +1,26 @@
+{% schema %}
+{
+  "name": "Footer dummy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved."
+    },
+ 
+ 
+  ],
+  "presets": [
+    {
+      "name": "Footer dummy"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="footer text-center text-gray-500 text-sm">
+  <p>{{ section.settings.footer_text }}</p>
+
+
+</section>

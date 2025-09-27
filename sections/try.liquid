@@ -1,0 +1,38 @@
+<section>
+<div class="!bg-black !min-h-[300px] !flex !gap-4 !items-center !justify-center">
+    {% if section.settings.main_image %}
+      <img class="!w-[300px] !h-[300px]" src="{{ section.settings.main_image | image_url: '400x400' }}" alt="Main Image" width="300px" height="300px">
+    {% endif %}
+    {% if section.settings.secondary_image %}
+      <img class="!w-[300px] !h-[300px]"
+        src="{{ section.settings.secondary_image | image_url:'400x400' }}"
+        alt="Secondary Image"
+        width="300px"
+        height="300px"
+      >
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Try Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_image",
+      "label": "Secondary Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Try Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,204 @@
+<section class="bg-[#000000] text-white pt-20">
+  <div class="max-w-[1140px] mx-auto px-5">
+    <div class="lg:!flex !flex-wrap !gap-10 justify-between mb-20">
+      <!-- Logo + Text -->
+      <div class="!max-w-[338px] max-lg:pb-10">
+        {% if section.settings.footer_logo != blank %}
+          <img
+            src="{{ section.settings.footer_logo | img_url: '200x' }}"
+            alt="Logo"
+            class="mb-4 !max-w-[213px] !h-[107px]"
+            width="213"
+            height="107"
+          >
+        {% endif %}
+        <p class="text-base leading-[150%] font-normal  text-white/70">{{ section.settings.footer_text }}</p>
+      </div>
+      <div class="sm:flex max-sm:!flex-wrap lg:justify-between lg:!gap-10 md:!gap-40 !gap-24 md:!min-w-[550px]">
+        <!-- Quick Links -->
+        <div class="max-w-[160px]">
+          <h3 class="text-base leading-[150%] font-semibold !mb-3">{{ section.settings.quick_links_heading }}</h3>
+          <ul class="space-y-[8px]">
+            {% for link in linklists[section.settings.quick_links].links %}
+              <li>
+                <a href="{{ link.url }}" class="text-base !text-white/70 font-normal leading-[150%]">
+                  {{- link.title -}}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Customer Care -->
+        <div class="max-w-[160px]">
+          <h3 class="text-base leading-[150%] font-semibold !mb-3">{{ section.settings.customer_care_heading }}</h3>
+          <ul class="space-y-[8px]">
+            {% for link in linklists[section.settings.customer_care_links].links %}
+              <li>
+                <a href="{{ link.url }}" class="text-base !text-white/70 font-normal leading-[150%]">
+                  {{- link.title -}}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="max-w-[160px]">
+          <h3 class="text-base leading-[150%] font-semibold !mb-3">{{ section.settings.support_heading }}</h3>
+          <ul class="space-y-[8px]">
+            {% for link in linklists[section.settings.support_links].links %}
+              <li>
+                <a href="{{ link.url }}" class="text-base !text-white/70 font-normal leading-[150%]">
+                  {{- link.title -}}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bottom Bar -->
+  <div class="border !border-white/16"></div>
+  <div class="max-w-[1140px] mx-auto px-5 py-5 flex flex-col-reverse md:flex-row justify-between items-center gap-4">
+    <p class="text-base font-normal leading-[150%] !text-white/70">
+      © {{ 'now' | date: '%Y' }}
+      {{ section.settings.copyright_text }}
+    </p>
+    <div class="flex !gap-4 !max-w-[176px]">
+      {% if section.settings.social_facebook != blank %}
+        <a href="{{ section.settings.social_facebook }}" target="_blank" class="hover:!scale-1.2 !transition-all !duration-500 !min-w-[32px] !min-h-[32px]">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="16" fill="white" fill-opacity="0.09"/>
+            <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" stroke="white" stroke-opacity="0.07"/>
+            <path d="M17.1971 24V16.7135H19.5664L19.9186 13.8606H17.1971V12.0435C17.1971 11.2202 17.4182 10.6566 18.557 10.6566H20V8.11306C19.2979 8.03499 18.5922 7.9973 17.886 8.00015C15.7918 8.00015 14.3539 9.32658 14.3539 11.7616V13.8553H12V16.7082H14.359V24H17.1971Z" fill="white"/>
+          </svg>
+        </a>
+      {% endif %}
+      {% if section.settings.social_instagram != blank %}
+        <a href="{{ section.settings.social_instagram }}" target="_blank" class="hover:!scale-1.2 !transition-all !duration-500 !min-w-[32px] !min-h-[32px]">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="16" fill="white" fill-opacity="0.09"/>
+            <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" stroke="white" stroke-opacity="0.07"/>
+            <path d="M16.8224 8.00098C17.4062 7.99874 17.9899 8.00461 18.5735 8.01858L18.7287 8.02418C18.9079 8.03058 19.0847 8.03858 19.2983 8.04818C20.1494 8.08818 20.7302 8.22258 21.2398 8.42017C21.7678 8.62336 22.2125 8.89855 22.6573 9.34334C23.064 9.74301 23.3787 10.2265 23.5797 10.7601C23.7773 11.2697 23.9116 11.8513 23.9516 12.7024C23.9612 12.9152 23.9692 13.0928 23.9756 13.272L23.9804 13.4272C23.9947 14.0105 24.0008 14.594 23.9988 15.1775L23.9996 15.7743V16.8223C24.0016 17.4061 23.9955 17.9898 23.9812 18.5734L23.9764 18.7286C23.97 18.9078 23.962 19.0846 23.9524 19.2982C23.9124 20.1494 23.7765 20.7302 23.5797 21.2397C23.3794 21.7739 23.0646 22.2578 22.6573 22.6573C22.2573 23.0639 21.7736 23.3787 21.2398 23.5797C20.7302 23.7772 20.1494 23.9116 19.2983 23.9516C19.0847 23.9612 18.9079 23.9692 18.7287 23.9756L18.5735 23.9804C17.9899 23.9947 17.4062 24.0008 16.8224 23.9988L16.2256 23.9996H15.1785C14.5947 24.0016 14.011 23.9955 13.4274 23.9812L13.2722 23.9764C13.0823 23.9696 12.8924 23.9616 12.7026 23.9524C11.8515 23.9124 11.2707 23.7764 10.7603 23.5797C10.2265 23.3791 9.74296 23.0643 9.34359 22.6573C8.93645 22.2575 8.62141 21.7738 8.42044 21.2397C8.22285 20.7302 8.08846 20.1494 8.04846 19.2982C8.03955 19.1084 8.03155 18.9185 8.02446 18.7286L8.02046 18.5734C8.00571 17.9898 7.99905 17.4061 8.00046 16.8223V15.1775C7.99823 14.594 8.0041 14.0105 8.01806 13.4272L8.02366 13.272C8.03006 13.0928 8.03806 12.9152 8.04766 12.7024C8.08766 11.8505 8.22205 11.2705 8.41964 10.7601C8.62073 10.2262 8.93638 9.74288 9.34439 9.34414C9.74349 8.93675 10.2267 8.62142 10.7603 8.42017C11.2707 8.22258 11.8507 8.08818 12.7026 8.04818L13.2722 8.02418L13.4274 8.02018C14.0107 8.00544 14.5942 7.99878 15.1777 8.00018L16.8224 8.00098ZM16.0001 12.0008C15.4701 11.9934 14.9439 12.0913 14.4521 12.2889C13.9603 12.4865 13.5127 12.7799 13.1353 13.1521C12.7579 13.5242 12.4582 13.9676 12.2536 14.4566C12.049 14.9455 11.9437 15.4703 11.9437 16.0003C11.9437 16.5303 12.049 17.0551 12.2536 17.5441C12.4582 18.033 12.7579 18.4764 13.1353 18.8486C13.5127 19.2207 13.9603 19.5141 14.4521 19.7117C14.9439 19.9094 15.4701 20.0073 16.0001 19.9998C17.0609 19.9998 18.0782 19.5784 18.8283 18.8282C19.5784 18.0781 19.9998 17.0607 19.9998 15.9999C19.9998 14.9391 19.5784 13.9217 18.8283 13.1716C18.0782 12.4215 17.0609 12.0008 16.0001 12.0008ZM16.0001 13.6008C16.3188 13.5949 16.6356 13.6526 16.9318 13.7706C17.2281 13.8885 17.4978 14.0643 17.7254 14.2876C17.9529 14.511 18.1337 14.7774 18.2571 15.0714C18.3805 15.3654 18.4441 15.6811 18.4441 15.9999C18.4442 16.3188 18.3807 16.6344 18.2574 16.9285C18.1341 17.2225 17.9534 17.489 17.726 17.7124C17.4985 17.9359 17.2288 18.1117 16.9326 18.2298C16.6364 18.3478 16.3196 18.4056 16.0009 18.3998C15.3644 18.3998 14.7539 18.147 14.3039 17.6969C13.8538 17.2468 13.601 16.6364 13.601 15.9999C13.601 15.3634 13.8538 14.753 14.3039 14.3029C14.7539 13.8528 15.3644 13.6 16.0009 13.6L16.0001 13.6008ZM20.1998 10.8009C19.9418 10.8112 19.6977 10.921 19.5188 11.1073C19.3398 11.2935 19.2399 11.5418 19.2399 11.8001C19.2399 12.0583 19.3398 12.3066 19.5188 12.4929C19.6977 12.6791 19.9418 12.7889 20.1998 12.7992C20.465 12.7992 20.7194 12.6939 20.9069 12.5063C21.0944 12.3188 21.1998 12.0645 21.1998 11.7993C21.1998 11.534 21.0944 11.2797 20.9069 11.0922C20.7194 10.9046 20.465 10.7993 20.1998 10.7993V10.8009Z" fill="white"/>
+          </svg>
+        </a>
+      {% endif %}
+      {% if section.settings.social_linkedin != blank %}
+        <a href="{{ section.settings.social_linkedin }}" target="_blank" class="hover:!scale-1.2 !transition-all !duration-500 !min-w-[32px] !min-h-[32px]">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="16" fill="white" fill-opacity="0.09"/>
+            <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" stroke="white" stroke-opacity="0.07"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.3333 8C22.0406 8 22.7189 8.28095 23.219 8.78105C23.719 9.28115 24 9.95942 24 10.6667V21.3333C24 22.0406 23.719 22.7189 23.219 23.219C22.7189 23.719 22.0406 24 21.3333 24H10.6667C9.95942 24 9.28115 23.719 8.78105 23.219C8.28095 22.7189 8 22.0406 8 21.3333V10.6667C8 9.95942 8.28095 9.28115 8.78105 8.78105C9.28115 8.28095 9.95942 8 10.6667 8H21.3333ZM12.4444 14.2222C12.2087 14.2222 11.9826 14.3159 11.8159 14.4826C11.6492 14.6493 11.5556 14.8754 11.5556 15.1111V19.5556C11.5556 19.7913 11.6492 20.0174 11.8159 20.1841C11.9826 20.3508 12.2087 20.4444 12.4444 20.4444C12.6802 20.4444 12.9063 20.3508 13.073 20.1841C13.2397 20.0174 13.3333 19.7913 13.3333 19.5556V15.1111C13.3333 14.8754 13.2397 14.6493 13.073 14.4826C12.9063 14.3159 12.6802 14.2222 12.4444 14.2222ZM15.1111 13.3333C14.8754 13.3333 14.6493 13.427 14.4826 13.5937C14.3159 13.7604 14.2222 13.9865 14.2222 14.2222V19.5556C14.2222 19.7913 14.3159 20.0174 14.4826 20.1841C14.6493 20.3508 14.8754 20.4444 15.1111 20.4444C15.3469 20.4444 15.573 20.3508 15.7397 20.1841C15.9063 20.0174 16 19.7913 16 19.5556V16.3022C16.2711 15.9964 16.7289 15.6373 17.2382 15.4196C17.5342 15.2933 17.9796 15.2418 18.2889 15.3396C18.3915 15.3656 18.4829 15.4242 18.5493 15.5067C18.5956 15.5689 18.6667 15.7076 18.6667 16V19.5556C18.6667 19.7913 18.7603 20.0174 18.927 20.1841C19.0937 20.3508 19.3198 20.4444 19.5556 20.4444C19.7913 20.4444 20.0174 20.3508 20.1841 20.1841C20.3508 20.0174 20.4444 19.7913 20.4444 19.5556V16C20.4444 15.4044 20.2933 14.8747 19.9787 14.4498C19.6891 14.0645 19.2839 13.782 18.8222 13.6436C18.0204 13.392 17.1324 13.5316 16.5396 13.7858C16.3497 13.8674 16.1648 13.96 15.9858 14.0631C15.9485 13.8583 15.8405 13.6731 15.6807 13.5397C15.5209 13.4063 15.3193 13.3333 15.1111 13.3333ZM12.4444 11.5556C12.2087 11.5556 11.9826 11.6492 11.8159 11.8159C11.6492 11.9826 11.5556 12.2087 11.5556 12.4444C11.5556 12.6802 11.6492 12.9063 11.8159 13.073C11.9826 13.2397 12.2087 13.3333 12.4444 13.3333C12.6802 13.3333 12.9063 13.2397 13.073 13.073C13.2397 12.9063 13.3333 12.6802 13.3333 12.4444C13.3333 12.2087 13.2397 11.9826 13.073 11.8159C12.9063 11.6492 12.6802 11.5556 12.4444 11.5556Z" fill="white"/>
+          </svg>
+        </a>
+      {% endif %}
+      {% if section.settings.social_x != blank %}
+        <a href="{{ section.settings.social_x }}" target="_blank" class="hover:!scale-1.2 !transition-all !duration-500 !min-w-[32px] !min-h-[32px]">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="16" fill="white" fill-opacity="0.09"/>
+            <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" stroke="white" stroke-opacity="0.07"/>
+            <g clip-path="url(#clip0_296_1585)">
+            <mask id="mask0_296_1585" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="8" y="8" width="16" height="16">
+            <path d="M8 8H24V24H8V8Z" fill="white"/>
+            </mask>
+            <g mask="url(#mask0_296_1585)">
+            <path d="M20.6 8.75H23.0537L17.6937 14.8917L24 23.2506H19.0629L15.1931 18.182L10.7703 23.2506H8.31429L14.0469 16.6791L8 8.75114H13.0629L16.5554 13.3831L20.6 8.75ZM19.7371 21.7786H21.0971L12.32 10.1454H10.8617L19.7371 21.7786Z" fill="white"/>
+            </g>
+            </g>
+            <defs>
+            <clipPath id="clip0_296_1585">
+            <rect width="16" height="16" fill="white" transform="translate(8 8)"/>
+            </clipPath>
+            </defs>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_text",
+      "label": "Footer Description",
+      "default": "From digitally printed poplin to soft rayon and cambric, we offer ready-to-stitch fabric packs that fuel your creativity."
+    },
+    {
+      "type": "text",
+      "id": "quick_links_heading",
+      "label": "Quick Links Heading",
+      "default": "Quick Links"
+    },
+    {
+      "type": "link_list",
+      "id": "quick_links",
+      "label": "Quick Links Menu"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_heading",
+      "label": "Customer Care Heading",
+      "default": "Customer Care"
+    },
+    {
+      "type": "link_list",
+      "id": "customer_care_links",
+      "label": "Customer Care Menu"
+    },
+    {
+      "type": "text",
+      "id": "support_heading",
+      "label": "Support Heading",
+      "default": "Support"
+    },
+    {
+      "type": "link_list",
+      "id": "support_links",
+      "label": "Support Menu"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "Kapaas.co.in — All Rights Reserved."
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_linkedin",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "url",
+      "id": "social_x",
+      "label": "X (Twitter) URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}

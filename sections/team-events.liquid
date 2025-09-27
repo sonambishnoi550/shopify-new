@@ -1,0 +1,288 @@
+{% schema %}
+{
+  "name": "Team Events",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Our Team Events"
+    },
+    {
+      "type": "url",
+      "id": "brochure_link",
+      "label": "Brochure Download Link"
+    },
+    {
+      "type": "collection",
+      "id": "event_collection",
+      "label": "Event Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Team Events Section"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+ .added-to-wishlist svg {
+      storke : var(--color-orange) !important;
+  path {
+      fill: white !important;
+      storke : var(--color-orange) !important;
+  }
+  }
+</style>
+
+
+<div class="bg-[#F6F6F6]">
+  <div class="container !max-w-[1140px] mx-auto overflow-x-hidden">
+    {% assign selected_collection = collections[section.settings.event_collection] %}
+
+<div class="team-events-section bg-[#F6F6F6]  !py-[80px]">
+  <div class="container !max-w-[1140px] mx-auto overflow-x-hidden">
+    <div class="events-header !lg:mb-[40px] mb-[43px]">
+      <h2 class="bricolage-grotesque-ff !normal-case !text-[24px]">
+        {{ section.settings.section_heading }}
+      </h2>
+      {% if section.settings.brochure_link %}
+        <a class="btn transition-all duration-300 hover:!bg-white hover:!border-orange !border border-transparent hover:!text-orange !text-[16px] brochure-button" href="{{ section.settings.brochure_link }}" target="_blank">
+   Eventmappe runterladen
+        </a>
+      {% endif %}
+    </div>
+
+    {% if selected_collection.products.size > 0 %}
+
+    <!-- Mobile Swiper -->
+    <div class="team-events !px-0  px-[20px]">
+      <div class="swiper-wrapper !h-auto">
+        {% for product in selected_collection.products %}
+        <div class="swiper-slide">
+          <div class="!relative">
+      <div class="event-card block !mb-[24px]  max-sm:!h-[324px] max-md:!h-[424px] cursor-pointer" style="background-image: url({{ product.featured_image | img_url: 'master' }});" data-url="{{ product.url }}">
+           
+  <div class="overlay">
+    <div class="content">
+      <h3 class="bricolage-grotesque-ff !text-[24px]">{{ product.title }}</h3>
+      <p class="roboto-font !line-clamp-2 max-md:!line-clamp-3 max-sm:!mb-[8px] !text-[16px]">
+        {{ product.description | strip_html }}
+      </p>
+      <div class="flex flex-col !items-start">
+      <p class="roboto-font pb-[4px] !text-nowrap !mb-0 !text-[20px] text-white">
+       <span class="!text-[16px] pr-[2px]">Beginnend ab </span> {{ product.price | money }}
+      </p>
+        <div class="flex gap-[8px] pb-[8px] items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+<path fill="white" d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 37.039062 10.990234 A 1.0001 1.0001 0 0 0 36.265625 11.322266 L 26.183594 22.244141 A 3 3 0 0 0 25 22 A 3 3 0 0 0 22 25 A 3 3 0 0 0 25 28 A 3 3 0 0 0 25.5 27.958984 L 29.125 34.486328 A 1.0010694 1.0010694 0 1 0 30.875 33.513672 L 27.246094 26.984375 A 3 3 0 0 0 28 25 A 3 3 0 0 0 27.652344 23.599609 L 37.734375 12.677734 A 1.0001 1.0001 0 0 0 37.039062 10.990234 z"></path>
+</svg> <p class="flex !gap-[6px] !mb-0  items-end roboto-font !text-[16px] text-white">Time: <span>{{ product.metafields.custom.min_hour | default : 4 }} Hours</span></p>
+                </div>
+        <div class="flex !gap-[6px] max-sm:!mb-[8px] items-center !whitespace-nowrap !items-center">
+        <span class="flex !gap-[6px] items-end roboto-font !text-[16px] text-white "><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_944_541)">
+<path d="M12.6882 11.4478C12.1854 11.1732 11.6089 11.0173 10.996 11.0173H9.53936C8.90928 11.0173 8.31787 11.1822 7.80576 11.4708C6.72881 12.0771 6.00146 13.2314 6.00146 14.5552V15.6466H14.5339V14.5552C14.5339 13.2142 13.7878 12.0478 12.6882 11.4478Z" fill="#FCFCFC"/>
+<path d="M16.7107 10.0479H15.4998C14.7928 10.0479 14.1338 10.2568 13.5811 10.617C13.8467 10.7912 14.0963 10.9947 14.3264 11.2248C15.2158 12.1143 15.7057 13.2971 15.7057 14.5553V15.0686H20.2381V13.5752C20.2381 11.6303 18.6557 10.0479 16.7107 10.0479Z" fill="#FCFCFC"/>
+<path d="M4.97656 10.0479H3.76562C1.8207 10.0479 0.238281 11.6303 0.238281 13.5752V15.0686H4.82969V14.5553C4.82969 13.2971 5.31992 12.1143 6.20937 11.2248C6.43086 11.0033 6.67031 10.8064 6.925 10.6365C6.36641 10.2646 5.69648 10.0479 4.97656 10.0479Z" fill="#FCFCFC"/>
+<path d="M16.1037 4.74292C16.0975 4.74292 16.091 4.74296 16.0848 4.74304C14.7739 4.75386 13.7167 5.88687 13.7281 7.26862C13.7395 8.64382 14.8049 9.75503 16.1073 9.75503C16.1135 9.75503 16.1199 9.75499 16.1262 9.75491C16.7689 9.7496 17.3687 9.47882 17.8152 8.99237C18.2512 8.51722 18.4883 7.89112 18.4828 7.22933C18.4715 5.85413 17.4061 4.74292 16.1037 4.74292Z" fill="#FCFCFC"/>
+<path d="M4.36929 4.74292C4.36308 4.74292 4.35663 4.74296 4.35038 4.74304C3.03953 4.75386 1.98234 5.88687 1.99374 7.26862C2.00507 8.64382 3.0705 9.75503 4.37288 9.75503C4.37913 9.75503 4.38554 9.75499 4.39179 9.75491C5.03453 9.7496 5.63437 9.47882 6.08077 8.99237C6.51683 8.51722 6.75394 7.89112 6.74847 7.22933C6.7371 5.85413 5.67171 4.74292 4.36929 4.74292Z" fill="#FCFCFC"/>
+<path d="M10.268 4.35327C8.75664 4.35327 7.52734 5.6521 7.52734 7.24897C7.52734 8.40288 8.16953 9.40132 9.09648 9.86616C9.45195 10.0447 9.84922 10.1443 10.268 10.1443C10.6867 10.1443 11.084 10.0447 11.4395 9.86616C12.3664 9.40132 13.0086 8.40288 13.0086 7.24897C13.0086 5.6521 11.7793 4.35327 10.268 4.35327Z" fill="#FCFCFC"/>
+</g>
+<defs>
+<clipPath id="clip0_944_541">
+<rect width="20" height="20" fill="white" transform="translate(0.619141)"/>
+</clipPath>
+</defs>
+</svg>
+</span>
+  <p class="!pb-0 roboto-font !mb-0"> People :  {{ product.metafields.custom.min_people }}{% if product.metafields.custom.max_people %}-{% endif %}{{ product.metafields.custom.max_people }}</p>
+</div>
+      </div>
+      <div class="!flex !justify-between">
+          <!-- Actual button with its own link -->
+          <a href="{{ product.metafields.custom.button | default: product.url }}" class="btn booking-btn max-sm:!mt-0 !text-[14px] poppins-font transition-all duration-300 hover:!bg-white hover:!border-orange !bg-[#9787FE] !border border-transparent hover:!text-orange inline-block">
+            Jetzt buchen
+          </a>
+       <div class="!flex !gap-3">
+
+ <button aria-label="Add To Wishlist"
+  class="size-[46px] !bg-[#9787FE] !rounded-full !flex !justify-center !items-center m-wishlist-button"
+  data-product-handle="{{ product.handle }}"
+>
+<svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.2099 22.9996C16.4454 22.9996 15.7956 22.7158 15.2605 22.1482C14.7253 21.5806 14.4578 20.8913 14.4578 20.0804C14.4578 19.9831 14.4807 19.756 14.5266 19.3992L8.08198 15.4096C7.83735 15.6529 7.55449 15.8436 7.23341 15.9818C6.91232 16.12 6.56831 16.1887 6.20136 16.1881C5.43687 16.1881 4.78706 15.9043 4.25193 15.3366C3.71679 14.769 3.44922 14.0798 3.44922 13.2689C3.44922 12.458 3.71679 11.7687 4.25193 11.2011C4.78706 10.6334 5.43687 10.3496 6.20136 10.3496C6.56831 10.3496 6.91232 10.4187 7.23341 10.5569C7.55449 10.6951 7.83735 10.8855 8.08198 11.1281L14.5266 7.13847C14.496 7.02495 14.477 6.91564 14.4697 6.81054C14.4624 6.70545 14.4584 6.58771 14.4578 6.45732C14.4578 5.64642 14.7253 4.95716 15.2605 4.38953C15.7956 3.8219 16.4454 3.53809 17.2099 3.53809C17.9744 3.53809 18.6242 3.8219 19.1593 4.38953C19.6945 4.95716 19.962 5.64642 19.962 6.45732C19.962 7.26821 19.6945 7.95748 19.1593 8.5251C18.6242 9.09273 17.9744 9.37655 17.2099 9.37655C16.8429 9.37655 16.4989 9.30746 16.1779 9.16928C15.8568 9.03111 15.5739 8.84071 15.3293 8.59809L8.88469 12.5877C8.91527 12.7012 8.93453 12.8109 8.94248 12.9166C8.95043 13.0223 8.9541 13.1398 8.95349 13.2689C8.95288 13.398 8.94921 13.5157 8.94248 13.6221C8.93576 13.7285 8.91649 13.8378 8.88469 13.95L15.3293 17.9396C15.5739 17.6964 15.8568 17.506 16.1779 17.3684C16.4989 17.2309 16.8429 17.1618 17.2099 17.1612C17.9744 17.1612 18.6242 17.445 19.1593 18.0126C19.6945 18.5802 19.962 19.2695 19.962 20.0804C19.962 20.8913 19.6945 21.5806 19.1593 22.1482C18.6242 22.7158 17.9744 22.9996 17.2099 22.9996Z" fill="#FCFCFC"/>
+</svg>
+</button>
+ <button aria-label="Add To Wishlist"
+  class=" size-[46px] !bg-[#9787FE] !rounded-full !flex !justify-center !items-center m-wishlist-button"
+  data-product-handle="{{ product.handle }}"
+>
+<svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.8333 1C17.3333 1 15.1667 2.47857 14 4.45C12.8333 2.47857 10.6667 1 8.16667 1C4.5 1 1.5 3.95714 1.5 7.57143C1.5 8.72143 1.83333 9.87143 2.33333 10.8571C5.66667 16.6071 14 24 14 24C14 24 22.3333 16.6071 25.6667 10.8571C26.1667 9.87143 26.5 8.72143 26.5 7.57143C26.5 3.95714 23.5 1 19.8333 1Z" stroke="#FCFCFC" stroke-width="2" stroke-linejoin="round"/>
+</svg>
+
+
+</button>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Swiper Navigation -->
+      <div class="w-full flex !justify-center !flex gap-[8px] mt-[16px]">
+        <div class="team-event-button-prev !w-[40px] !h-[40px] flex group justify-center cursor-pointer items-center hover:bg-orange bg-white rounded-full !border !border-orange transition-all duration-300">
+          <svg width="21" height="20"><path class="group-hover:!stroke-white transition-all duration-300" d="M4.666 10L16.333 10M4.666 10L9.666 5M4.666 10L9.666 15" stroke="#FF6B2D" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="team-event-button-next !w-[40px] !h-[40px] flex group justify-center cursor-pointer items-center hover:bg-orange bg-white rounded-full !border !border-orange transition-all duration-300">
+          <svg width="21" height="20"><path class="group-hover:!stroke-white transition-all duration-300" d="M16.334 10L4.667 10M16.334 10L11.334 5M16.334 10L11.334 15" stroke="#FF6B2D" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+</div>
+      </div>
+            <script>
+  btn.classList.add(this.addedClass) // => "added-to-wishlist"
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
+      const swiperContainer = document.querySelector('.team-events');
+      const nextBtn = document.querySelector('.team-event-button-next');
+      const prevBtn = document.querySelector('.team-event-button-prev');
+
+      const slides = swiperContainer ? swiperContainer.querySelectorAll('.swiper-slide') : [];
+
+      if (typeof Swiper !== 'undefined' && swiperContainer && nextBtn && prevBtn) {
+        new Swiper('.team-events', {
+          slidesPerView: 1,
+          spaceBetween: 26,
+          loop: slides.length > 1, // ✅ Loop only if more than 1 slide
+          navigation: {
+            nextEl: '.team-event-button-next',
+            prevEl: '.team-event-button-prev'
+          },
+          breakpoints: {
+            760: { slidesPerView: 1 }
+          }
+        });
+      } else {
+        console.warn('Swiper not loaded OR DOM elements missing for .team-events');
+      }
+    }, 300); // Delay for DOM load
+  });
+</script>
+
+            <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".event-card").forEach(card => {
+      card.addEventListener("click", function (e) {
+        // Prevent click if user clicked on the booking button
+        if (e.target.closest(".booking-btn")) return;
+        const url = this.getAttribute("data-url");
+        if (url) window.location.href = url;
+      });
+    });
+  });
+</script>
+
+
+<style>
+        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+.team-events-section .container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.events-header h2 {
+  font-size: 48px;
+  margin: 0;
+  color: #000; /* Optional: dark text for heading */
+}
+.brochure-button {
+  background-color: var(--color-orange);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.event-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 80px;
+  height: 428px;
+}
+.event-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  padding: 60px 40px;
+  width: 100%;
+  justify-content: center;
+}
+.event-card .overlay .content {
+  max-width: 838px;
+  color: white;
+}
+.event-card h3 {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #FCFCFC;
+  line-height : 120%;
+}
+.event-card p {
+  margin-bottom: 24px;
+  line-height: 150%;
+  color : #FCFCFC ;
+}
+.event-card .btn {
+  display: inline-block;
+  background: var(--color-orange);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin-top : 8px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .events-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .events-header h2 {
+    font-size: 32px;
+  }
+  .event-card h3 {
+    font-size: 28px;
+  }
+  .event-card .overlay {
+    padding: 40px 24px;
+  }
+}
+</style>

@@ -1,0 +1,71 @@
+<section class="lg:pt-[104px] md:pt-20 pt-12">
+  <div class="max-w-[1180px] mx-auto px-5">
+    <div class="flex justify-center flex-wrap gap-6">
+      {% for block in section.blocks %}
+        <div class="md:w-[170px] w-[300px] !h-[172px] overflow-hidden rounded-lg shadow-md relative hover:scale-1.1 transition-transform duration-300">
+          {% if block.settings.image != blank %}
+            <img
+              src="{{ block.settings.image | image_url: width: 170 }}"
+              alt="{{ block.settings.title | escape }}"
+              width="170"
+              height="172"
+              class="w-full h-full min-h-[172px] md:w-[172px] w-[300px] object-cover"
+            >
+          {% endif %}
+          <div class="absolute bottom-4 left-1/2 transform -translate-x-1/4 bg-blue text-nowrap text-white uppercase text-xs font-normal leading-[100%] px-4 py-1 rounded-full text-center">
+            {{ block.settings.title }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<style>
+  @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+.bg-blue{
+background-color:#9787FE;
+} 
+</style>
+
+
+
+{% schema %}
+{
+  "name": "Services Cards",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "service_card",
+      "name": "Service Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services Cards",
+      "blocks": [
+        { "type": "service_card" },
+        { "type": "service_card" },
+        { "type": "service_card" },
+        { "type": "service_card" },
+        { "type": "service_card" },
+        { "type": "service_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

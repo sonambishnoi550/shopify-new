@@ -1,0 +1,84 @@
+<style>
+      @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+  @keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .slider-wrapper {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .slider-track {
+    display: flex; 
+    align-items:center ;
+    width: fit-content;
+    animation: slide 30s linear infinite;
+    gap: 20px;
+  }
+</style>
+
+
+<div class=" lg:!pt-[100px] md:!pt-[80px] !pt-[36px]">
+  <div class="max-w-[1920px] mx-auto !px-[12px]">
+    <h3 class="text-center !font-semibold !text-[24px] bricolage-grotesque-ff !leading-[150%] text-[#1C2231]">
+      Stronger Together – Powered by Trusted Partners
+    </h3>
+<p class="font-normal !text-base !text-center !text-[#1C2231] !leading-[150%] max-w-[1000px] mx-auto !mt-4 !mb-10">
+    We believe that great events come from great collaborations. That’s why GalaCube only works with verified partners who offer transparent pricing and reliable service – no hidden costs, no guesswork. In every city, we team up with local providers to bring your event to life – from unique spaces to creative workshops, catering, and logistics.
+</p>
+    <!-- Continuous Infinite Slider -->
+    <div class="slider-wrapper !pb-[24px]">
+      <div class="slider-track">
+        {% for i in (1..4) %}
+          {% for logo in section.blocks %}
+            {% if logo.settings.image %}
+              <div class="flex-shrink-0">
+                <img loading="lazy" width="110" height="35" src="{{ logo.settings.image | image_url }}" alt="{{ logo.settings.image-name }}" class="w-[110px] !object-contain !h-[35px]"/>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% schema %}
+  {
+    "name": "Our Partners",
+    "settings": [],
+     "blocks": [
+      {
+        "type": "logos",
+        "name":"logos",
+        "settings": [
+          {
+            "type": "image_picker",
+            "label": "image",
+            "id": "image"
+          },
+           {
+            "type": "text",
+            "label": "image-name",
+            "id": "image-name"
+          },
+        ]
+      }
+    ],
+     "presets": [
+      {
+        "name": "Our Partners",
+        "blocks": [
+          {
+            "type": "logos"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

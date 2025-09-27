@@ -1,0 +1,168 @@
+<section class="event-packages-section py-16">
+  <div class="max-w-[1180px] mx-auto px-5">
+    <div class="text-center mb-10">
+      <h2 class="text-[28px] md:text-3xl font-semibold leading-[120%]">{{ section.settings.heading }}</h2>
+      <p class="text-gray-500 text-base mt-2">{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="flex lg:gap-6 gap-4 overflow-x-auto">
+      {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product] %}
+        <div class="border border-[#9787FE66] min-w-[364px] rounded-2xl lg:p-6 p-3 shadow-sm bg-white flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center lg:mb-6 mb-3">
+              <p class="text-xs font-normal leading-[100%] px-3.5 py-1.5 bg-[#9787FE] !text-nowrap text-white rounded-full">
+                EVENT SPACE
+              </p>
+              <div class="flex gap-2">
+                <button
+                  class="w-7 h-7 !bg-[#9787FE] rounded-full flex justify-center items-center"
+                  aria-label="Share"
+                >
+                  <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.0127 14C10.5474 14 10.1519 13.8272 9.82612 13.4817C9.50038 13.1362 9.33751 12.7166 9.33751 12.223C9.33751 12.1638 9.35147 12.0256 9.37939 11.8084L5.4566 9.37996C5.30769 9.52804 5.13552 9.64413 4.94008 9.72824C4.74463 9.81235 4.53523 9.8542 4.31187 9.85381C3.84653 9.85381 3.451 9.68105 3.12526 9.33554C2.79953 8.99003 2.63666 8.57048 2.63666 8.07689C2.63666 7.5833 2.79953 7.16374 3.12526 6.81823C3.451 6.47272 3.84653 6.29996 4.31187 6.29996C4.53523 6.29996 4.74463 6.34202 4.94008 6.42612C5.13552 6.51023 5.30769 6.62613 5.4566 6.77381L9.37939 4.34535C9.36078 4.27624 9.34924 4.20971 9.34477 4.14574C9.3403 4.08177 9.33788 4.0101 9.33751 3.93073C9.33751 3.43714 9.50038 3.01759 9.82612 2.67208C10.1519 2.32657 10.5474 2.15381 11.0127 2.15381C11.4781 2.15381 11.8736 2.32657 12.1993 2.67208C12.5251 3.01759 12.6879 3.43714 12.6879 3.93073C12.6879 4.42432 12.5251 4.84387 12.1993 5.18939C11.8736 5.5349 11.4781 5.70765 11.0127 5.70765C10.7894 5.70765 10.58 5.6656 10.3845 5.58149C10.1891 5.49739 10.0169 5.38149 9.868 5.23381L5.9452 7.66227C5.96382 7.73137 5.97554 7.79811 5.98038 7.86247C5.98522 7.92683 5.98746 7.99831 5.98708 8.07689C5.98671 8.15547 5.98448 8.22713 5.98038 8.29189C5.97629 8.35665 5.96456 8.42319 5.9452 8.4915L9.868 10.92C10.0169 10.7719 10.1891 10.656 10.3845 10.5723C10.58 10.4886 10.7894 10.4465 11.0127 10.4461C11.4781 10.4461 11.8736 10.6189 12.1993 10.9644C12.5251 11.3099 12.6879 11.7294 12.6879 12.223C12.6879 12.7166 12.5251 13.1362 12.1993 13.4817C11.8736 13.8272 11.4781 14 11.0127 14Z" fill="#FCFCFC"/>
+                  </svg>
+                </button>
+                <button
+                  class="w-7 h-7 !bg-[#9787FE] rounded-full flex justify-center items-center"
+                  data-product-handle="{{ product.handle }}"
+                  aria-label="Wishlist"
+                >
+                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.17513 0.5C7.17513 0.5 6.30846 1.07857 5.8418 1.85C5.37513 1.07857 4.50846 0.5 3.50846 0.5C2.0418 0.5 0.841797 1.65714 0.841797 3.07143C0.841797 3.52143 0.97513 3.97143 1.17513 4.35714C2.50846 6.60714 5.8418 9.5 5.8418 9.5C5.8418 9.5 9.17513 6.60714 10.5085 4.35714C10.7085 3.97143 10.8418 3.52143 10.8418 3.07143C10.8418 1.65714 9.6418 0.5 8.17513 0.5Z" stroke="#FCFCFC" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            {% if block.settings.networking_badge != blank %}
+              <p class="text-base !leading-[120%] inline-block font-medium text-[#000] lg:mb-4 mb-2">
+                {{ block.settings.networking_badge }}
+              </p>
+            {% endif %}
+            {% if block.settings.addon_text != blank %}
+              <p class="lg:text-base text-sm font-normal leading-[150%] text-[#010101B2] mb-2">{{ block.settings.addon_text }}</p>
+            {% endif %}
+            <p class="text-sm text-gray-500 mb-3">{{ product.description | strip_html | truncate: 100 }}</p>
+            <p class="text-2xl font-bold mb-2">
+              {{ product.price | money -}}
+              <span class="text-sm font-normal"> /{{ block.settings.price_type }}</span>
+            </p>
+            <p class="text-sm mb-1">⏰ Time: 4hrs</p>
+            <p class="text-sm mb-4">👥 People: Min 25 Max 100</p>
+            <a
+              href="{{ product.url }}"
+              class="!text-[#9787FE] border !border-[#9787FE] text-base font-semibold leading-[100%] py-2 px-4 rounded text-center block mb-6 mt-2"
+            >
+              Book Now
+            </a>
+            {% if section.settings.whats_included != blank %}
+              <div class="mt-4">
+                <ul class="lg:text-sm text-xs text-gray-600 space-y-2">
+                  {% assign lines = section.settings.whats_included | newline_to_br | split: '<br />' %}
+                  {% for line in lines %}
+                    <li class="flex items-start gap-[18px]">
+                      <span>{{ line }}</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Event Packages",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Berlin Event Packages"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our top sellers"
+    },
+    {
+      "type": "textarea",
+      "id": "whats_included",
+      "label": "What's Included (Tick List)",
+      "default": "✔️ Participation in the graffiti workshop\n✔️ All materials and protective gear\n✔️ Guidance from professional street artists\n✔️ Drinks and breaks during the session\n✔️ Team photo with completed artwork\n✔️ Price listed is per additional person"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "package",
+      "name": "Event Package",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "text",
+          "id": "price_type",
+          "label": "Price Type (e.g., per person, per team)",
+          "default": "person"
+        },
+        {
+          "type": "text",
+          "id": "networking_badge",
+          "label": "Networking Badge",
+          "default": "Networking 25+"
+        },
+        {
+          "type": "text",
+          "id": "addon_text",
+          "label": "Add-on Text",
+          "default": "Add-on for Graffiti Team Event (10 Pax required). Price per person."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Berlin Event Packages",
+      "category": "Custom Sections",
+      "blocks": [
+        {
+          "type": "package",
+          "settings": {
+            "product": "",
+            "price_type": "person",
+            "networking_badge": "Networking 25+",
+            "addon_text": "Add-on for Graffiti Team Event (10 Pax required). Price per person."
+          }
+        },
+        {
+          "type": "package",
+          "settings": {
+            "product": "",
+            "price_type": "team",
+            "networking_badge": "Networking 40+",
+            "addon_text": "Add-on for Breakout Escape (6 Pax required). Price per team."
+          }
+        },
+        {
+          "type": "package",
+          "settings": {
+            "product": "",
+            "price_type": "team",
+            "networking_badge": "Networking 50+",
+            "addon_text": "Add-on for Cocktail Class (10 Pax required). Price per person."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

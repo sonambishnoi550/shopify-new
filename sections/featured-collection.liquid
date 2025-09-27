@@ -1,0 +1,112 @@
+<section
+  class="md:!pb-[60px] md:!pt-[91px] !pt-[51px] !pb-[25px] sm:px-6 px-[30px]"
+>
+  <div class="container">
+    <!-- Dynamic Tabs -->
+    <ul class="flex justify-center gap-[10px] flex-wrap">
+      {%- for block in section.blocks -%}
+        <li class="cursor-pointer tabs w-fit">
+          <a
+            class="header_link_bg relative flex px-[26px] pt-[13px] pb-[9px] text-[#000] hover:!text-white"
+            href="#tab-{{ block.id }}"
+          >
+            {{ block.settings.tab_title }}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <!-- Tab Contents -->
+    <div class="mt-[50px]">
+      {%- for block in section.blocks -%}
+        <div id="tab-{{ block.id }}" class="tab-content hidden">
+          <!-- Desktop Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-[15px] lg:!flex !hidden">
+            {%- for product in collections[block.settings.collection].products limit: 4 -%}
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: 'square',
+                show_secondary_image: true,
+                show_vendor: true,
+                show_rating: true
+              %}
+            {%- endfor -%}
+          </div>
+
+          <!-- Mobile Swiper -->
+          <div class="swiper lg:!hidden !block">
+            <div class="swiper-wrapper">
+              {%- for product in collections[block.settings.collection].products limit: 4 -%}
+                <div class="swiper-slide">
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: 'square',
+                    show_secondary_image: true,
+                    show_vendor: true,
+                    show_rating: true
+                  %}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tabs a");
+  const contents = document.querySelectorAll(".tab-content");
+
+  if (tabs.length > 0) {
+    tabs[0].classList.add("active");
+    contents[0].classList.remove("hidden");
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", (e) => {
+      e.preventDefault();
+      tabs.forEach(t => t.classList.remove("active"));
+      contents.forEach(c => c.classList.add("hidden"));
+
+      tab.classList.add("active");
+      contents[index].classList.remove("hidden");
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Tabbed Collections",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Best Seller"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Tabbed Collections",
+  
+    }
+  ]
+}
+{% endschema %}
