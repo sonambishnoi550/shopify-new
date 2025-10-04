@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "Video laden: {{ description }}",
@@ -266,6 +275,24 @@
       "post": "Kommentar posten",
       "success_moderated": "Kommentar gepostet, Moderation ausstehend",
       "success": "Kommentar gepostet"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "order_summary": {
+        "order_discounts_apply_to_local_shop": "Bestellrabatte gelten nur für Artikel von %{shop_name}.",
+        "gift_cards_apply_to_local_shop": "Geschenkgutscheine gelten nur für Artikel von %{shop_name}."
+      },
+      "payment": {
+        "separate_payments_label": "Ihre Artikel stammen von mehreren Geschäften. Die Abrechnung erfolgt über %{separate_payments_link}.",
+        "separate_payments_text": "separate Zahlungen",
+        "payments": "Zahlungen"
+      },
+      "remote": {
+        "errors": {
+          "currency_mismatch": "Die Währung für die Remote-Verhandlung ( {{remote_currency}} ) stimmt nicht mit der übergeordneten Währung ( {{parent_currency}} ) überein."
+        }
+      }
     }
   }
 }
