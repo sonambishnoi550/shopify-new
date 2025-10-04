@@ -74,10 +74,10 @@
         "social_x": "https://twitter.com"
       }
     },
-    "175957309941aa1cf7": {
+    "175957310873f61632": {
       "type": "_blocks",
       "blocks": {
-        "powerful_form_builder_app_block_QNKXU6": {
+        "powerful_form_builder_app_block_HJGLzV": {
           "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
           "settings": {
             "shortcode": "<div class=\"globo-formbuilder\" data-id=\"MTEyMjg0\"></div>"
@@ -85,7 +85,7 @@
         }
       },
       "block_order": [
-        "powerful_form_builder_app_block_QNKXU6"
+        "powerful_form_builder_app_block_HJGLzV"
       ],
       "settings": {
         "content_direction": "column",
@@ -1202,7 +1202,7 @@
     "what_make_LmLiAw",
     "featured_products_kapaas_F7FAri",
     "footer_design_3cPw6U",
-    "175957309941aa1cf7",
+    "175957310873f61632",
     "hero_jVaWmY",
     "packages_GxYncm",
     "event_packages_zc6aBY",
