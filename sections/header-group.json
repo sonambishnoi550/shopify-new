@@ -16,6 +16,7 @@
       "blocks": {
         "ai_gen_block_d6ba8ed_6qMjit": {
           "type": "ai_gen_block_d6ba8ed",
+          "disabled": true,
           "settings": {
             "logo_text": "Your Store",
             "logo_height": 40,
