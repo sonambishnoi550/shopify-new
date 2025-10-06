@@ -194,6 +194,7 @@
     },
     "packages_GxYncm": {
       "type": "packages",
+      "disabled": true,
       "name": "Event Packages",
       "settings": {
         "heading": "Event Packages",
